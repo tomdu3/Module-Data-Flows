@@ -25,7 +25,7 @@
     </button>
 
     <div id="demo" class="collapse">
-      <div class="form-group">
+      <form id="book-form" class="form-group">
         <label for="title">Title:</label>
         <input
           type="text"
@@ -51,6 +51,9 @@
           min="1"
           required
         />
+        <div class="invalid-feedback" id="pages-feedback">
+          Please enter a valid positive integer page count.
+        </div>
         <label class="form-check-label">
           <input
             type="checkbox"
@@ -63,9 +66,8 @@
           type="submit"
           value="Submit"
           class="btn btn-primary"
-          onclick="submit()"
         />
-      </div>
+      </form>
     </div>
 
     <table class="table" id="display">

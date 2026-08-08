@@ -1,4 +1,5 @@
 const myLibrary = [];
+const bookForm = document.getElementById("book-form");
 const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 const pagesInput = document.getElementById("pages");
@@ -7,6 +8,19 @@ const checkInput = document.getElementById("check");
 window.addEventListener("load", function () {
   populateStorage();
   render();
+
+  if (bookForm) {
+    bookForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      submit();
+    });
+  }
+
+  if (pagesInput) {
+    pagesInput.addEventListener("input", function () {
+      pagesInput.classList.remove("is-invalid");
+    });
+  }
 });
 
 function populateStorage() {
@@ -28,14 +42,20 @@ function submit() {
   const pagesValue = pagesInput.value.trim();
   const pagesNumber = Number(pagesValue);
 
-  if (
-    !titleValue ||
-    !authorValue ||
+  // Validate pages
+  const isPagesInvalid =
     !pagesValue ||
     isNaN(pagesNumber) ||
     pagesNumber <= 0 ||
-    !Number.isInteger(pagesNumber)
-  ) {
+    !Number.isInteger(pagesNumber);
+
+  if (isPagesInvalid) {
+    pagesInput.classList.add("is-invalid");
+  } else {
+    pagesInput.classList.remove("is-invalid");
+  }
+
+  if (!titleValue || !authorValue || isPagesInvalid) {
     alert("Please fill all fields with valid information!");
     return false;
   }
@@ -49,10 +69,15 @@ function submit() {
   myLibrary.push(book);
 
   // reset form values
-  titleInput.value = "";
-  authorInput.value = "";
-  pagesInput.value = "";
-  checkInput.checked = false;
+  if (bookForm) {
+    bookForm.reset();
+  } else {
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+    checkInput.checked = false;
+  }
+  pagesInput.classList.remove("is-invalid");
 
   render();
 }
