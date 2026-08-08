@@ -7,7 +7,6 @@ let order = [
   { itemName: "Hash Brown", quantity: 4, unitPricePence: 40 },
 ];
 
-// TODO:
 // In exercise.js write a program that will take the `order` array as input and print out a receipt for the order.
 // Log each individual item to the console.
 // Log the total cost of the order to the console.
@@ -26,9 +25,14 @@ let order = [
 
 // Total: 14.50
 
+let total = 0;
 console.log("QTY, ITEM, TOTAL");
 for (const { itemName, quantity, unitPricePence } of order) {
+  const itemTotal = quantity * unitPricePence / 100
+  total += itemTotal;
   console.log(
-    `${quantity} ${itemName} ${((quantity * unitPricePence) / 100).toFixed(2)}`
+    `${quantity} ${itemName} ${(itemTotal).toFixed(2)}`
   );
 }
+
+console.log(`\nTotal: ${(total).toFixed(2)}`);
