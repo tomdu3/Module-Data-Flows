@@ -71,7 +71,7 @@ let hogwarts = [
   },
 ];
 
-// TODO: Task 1
+// Task 1
 
 // In `exercise.js` write a program that will take the `hogwarts` array as input and display
 // the names of the people who belong to the Gryffindor house.
@@ -79,18 +79,26 @@ let hogwarts = [
 
 const gryffindor = hogwarts.filter(({ house }) => house === "Gryffindor");
 
-console.log(
-  gryffindor.map(({ firstName, lastName }) => `${firstName} ${lastName}`)
-);
+console.log("Hogwarts people in Gryffindor");
+for (const person of gryffindor.map(
+  ({ firstName, lastName }) => `${firstName} ${lastName}`
+)) {
+  console.log(person);
+}
+
+console.log("\n");
 
 // Task 2
 // In exercise.js write a program that will take the hogwarts array as input and display the names of teachers who have pets.
 // Use object destructuring to extract the values you need out of each element in the array.
 
+console.log("Hogwarts teachers with pets");
 const teachersWithPets = hogwarts.filter(({ occupation, pet }) => {
   return occupation === "Teacher" && pet;
 });
 
-console.log(
-  teachersWithPets.map(({ firstName, lastName }) => `${firstName} ${lastName}`)
-);
+for (const person of teachersWithPets.map(
+  ({ firstName, lastName }) => `${firstName} ${lastName}`
+)) {
+  console.log(person);
+}
