@@ -97,6 +97,6 @@ const teachersWithPets = hogwarts.filter(({ occupation, pet }) => {
   return occupation === "Teacher" && pet;
 });
 
-for (const person of teachersWithPets) {
-  console.log(`${person.firstName} ${person.lastName}`)
+for (const { firstName, lastName } of teachersWithPets) {
+  console.log(`${firstName} ${lastName}`);
 };
