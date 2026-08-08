@@ -41,6 +41,11 @@ function submit() {
   } else {
     let book = new Book(title.value, author.value, pages.value, check.checked);
     myLibrary.push(book);
+    // reset form values
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    check.checked = false;
     render();
   }
 }
