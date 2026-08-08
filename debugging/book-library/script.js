@@ -1,4 +1,8 @@
 const myLibrary = [];
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const checkInput = document.getElementById("check");
 
 window.addEventListener("load", function () {
   populateStorage();
@@ -18,11 +22,6 @@ function populateStorage() {
   }
 }
 
-const titleInput = document.getElementById("title");
-const authorInput = document.getElementById("author");
-const pagesInput = document.getElementById("pages");
-const checkInput = document.getElementById("check");
-
 function submit() {
   const titleValue = titleInput.value.trim();
   const authorValue = authorInput.value.trim();
@@ -34,7 +33,8 @@ function submit() {
     !authorValue ||
     !pagesValue ||
     isNaN(pagesNumber) ||
-    pagesNumber <= 0
+    pagesNumber <= 0 ||
+    !Number.isInteger(pagesNumber)
   ) {
     alert("Please fill all fields with valid information!");
     return false;
