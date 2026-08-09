@@ -16,6 +16,18 @@ window.addEventListener("load", function () {
     });
   }
 
+  if (titleInput) {
+    titleInput.addEventListener("input", function () {
+      titleInput.classList.remove("is-invalid");
+    });
+  }
+
+  if (authorInput) {
+    authorInput.addEventListener("input", function () {
+      authorInput.classList.remove("is-invalid");
+    });
+  }
+
   if (pagesInput) {
     pagesInput.addEventListener("input", function () {
       pagesInput.classList.remove("is-invalid");
@@ -42,12 +54,25 @@ function submit() {
   const pagesValue = pagesInput.value.trim();
   const pagesNumber = Number(pagesValue);
 
-  // Validate pages
+  const isTitleInvalid = !titleValue;
+  const isAuthorInvalid = !authorValue;
   const isPagesInvalid =
     !pagesValue ||
     isNaN(pagesNumber) ||
     pagesNumber <= 0 ||
     !Number.isInteger(pagesNumber);
+
+  if (isTitleInvalid) {
+    titleInput.classList.add("is-invalid");
+  } else {
+    titleInput.classList.remove("is-invalid");
+  }
+
+  if (isAuthorInvalid) {
+    authorInput.classList.add("is-invalid");
+  } else {
+    authorInput.classList.remove("is-invalid");
+  }
 
   if (isPagesInvalid) {
     pagesInput.classList.add("is-invalid");
@@ -55,8 +80,7 @@ function submit() {
     pagesInput.classList.remove("is-invalid");
   }
 
-  if (!titleValue || !authorValue || isPagesInvalid) {
-    alert("Please fill all fields with valid information!");
+  if (isTitleInvalid || isAuthorInvalid || isPagesInvalid) {
     return false;
   }
 
@@ -68,16 +92,10 @@ function submit() {
   );
   myLibrary.push(book);
 
-  // reset form values
+  // Reset form values
   if (bookForm) {
     bookForm.reset();
-  } else {
-    titleInput.value = "";
-    authorInput.value = "";
-    pagesInput.value = "";
-    checkInput.checked = false;
   }
-  pagesInput.classList.remove("is-invalid");
 
   render();
 }
