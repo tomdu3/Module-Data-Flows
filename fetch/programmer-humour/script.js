@@ -1,5 +1,5 @@
 const imgEl = document.getElementsByTagName("img")[0];
-const endpointAPI = "https://xkcd.now.ssh/?comic=latest";
+const endpointAPI = "https://xkcd.now.sh/?comic=latest";
 
 const fetchData = async () => {
   try {
