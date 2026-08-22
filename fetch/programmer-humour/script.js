@@ -31,6 +31,11 @@ const fetchData = async () => {
 };
 
 const renderComic = async () => {
+  if (!container) {
+    console.error("Comic container not found in DOM");
+    return;
+  }
+
   const data = await fetchData();
   console.log(data);
   if (data && data.img) {
@@ -38,7 +43,7 @@ const renderComic = async () => {
     imgEl.alt = data.alt || data.title || "Programmer humour comic";
   } else {
     console.error("Image data not received");
-    imgEl.src = fallbackImage;
+    imgEl.src = fallbackImg;
     imgEl.alt = "No image available";
   }
 };
